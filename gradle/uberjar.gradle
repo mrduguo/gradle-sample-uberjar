@@ -1,0 +1,12 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+shadowJar {
+    classifier=null
+    manifest {
+        attributes 'Main-Class': 'com.github.mrduguo.gradle.sampleuberjar.World'
+    }
+}
+assemble.dependsOn shadowJar
+task run(type:JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.github.mrduguo.gradle.sampleuberjar.World'
+}
